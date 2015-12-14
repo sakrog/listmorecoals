@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+<?php
+require_once 'migration.php';
+=======
 <?PHP
 // Seeder file for Adlister
 
