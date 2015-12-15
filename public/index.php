@@ -2,7 +2,7 @@
  
 <html>
 	<head>
-		<title></title>
+		<title>Ad Lister</title>
 	</head>
 	<body>
 
