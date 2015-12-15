@@ -1,9 +1,8 @@
 <?PHP
-// migration file for adlister
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'adlister');
-define('DB_USER', 'adlister_user');
-define('DB_PASS', 'password');
+define('DB_USER', 'vagrant');
+define('DB_PASS', 'vagrant');
 
 require_once 'dbconnect.php';
 
