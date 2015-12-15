@@ -1,5 +1,4 @@
 <?PHP
-// migration file for adlister
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'adlister');
 define('DB_USER', 'vagrant');
@@ -21,6 +20,7 @@ $query = 'CREATE TABLE users (
 	password VARCHAR(240) NOT NULL,
 	PRIMARY KEY (userid)
 	)';
+$dbc->exec($query);
 
 $query = 'DROP TABLE IF EXISTS posts';
 $dbc->exec($query);
@@ -33,5 +33,6 @@ $query = 'CREATE TABLE posts (
 	description VARCHAR(240) NOT NULL,
 	PRIMARY KEY (id)
 	)';
+$dbc->exec($query);
 
 ?>
