@@ -3,19 +3,19 @@
 <head>
 	<title>Adlister Project</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewpoint" content="width=device-width, initial-scale=1">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
 	<link href="css/main.css" type="text/css" rel="stylesheet" />
 </head>
-<body>
-	<div class="content">
-		<div class="top_block_header">
-			<div class="content">
+		<div class="header">
+			<div class="content1">
 				<button class='sign'>Sign-In</button>
 			</div>
 		</div>
-		<div class="background block_2">
-		</div>
-		<div class="left_block side block_2">
-			<div class="content">
+<body>
+	<div id="page-content-wrapper" class="content">
+		<div class="block_2 col-md-3">About Us</div>
+			<div class="form">
 				<form class="form-inline">
 				  <div class="form-group">
 				    <label for="exampleInputName2">First Name</label>
@@ -30,7 +30,6 @@
 				  <button type="submit" class="btn btn-default">Send invitation</button>
 				</form>
 			</div>
-		</div>
 	</div>
 
 </body>
