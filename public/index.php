@@ -1,37 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
+ 
 <html>
-<head>
-	<title>Adlister Project</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link href="css/main.css" type="text/css" rel="stylesheet" />
-</head>
-<body>
-	<div class="content">
-		<div class="top_block_header">
-			<div class="content">
-				<button class='sign'>Sign-In</button>
-			</div>
-		</div>
-		<div class="background block_2">
-		</div>
-		<div class="left_block side block_2">
-			<div class="content">
-				<form class="form-inline">
-				  <div class="form-group">
-				    <label for="exampleInputName2">First Name</label>
-				    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane">
-				    <label for="exampleInputName3">Last Name</label>
-				    <input type="text" class="form-control" id="exampleInputName3" placeholder="Doe">
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleInputEmail2">Email</label>
-				    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-				  </div>
-				  <button type="submit" class="btn btn-default">Send invitation</button>
-				</form>
-			</div>
-		</div>
-	</div>
+	<head>
+		<title>Ad Lister</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- BOOTSTRAP CSS -->
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<!-- CUSTOM CSS -->
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<!-- TITLE IMG -->
+		<!-- <link rel="shortcut icon" href="img/mole.png"> -->
+	</head>
+	<body>
+		<?php include "../views/partials/navbar.php"; ?>
+		<?php include "../views/partials/header.php"; ?>
 
-</body>
+
+
+
+
+
+
+		<?php include "../views/partials/footer.php"; ?>
+		<!-- JQUERY -->
+		<script src="/js/jquery-2.1.4.min.js"></script>
+		<!-- BOOTSTRAP JS -->
+		<script src="/js/bootstrap.min.js"></script>
+		<!-- CUSTOM JS -->
+		<script src="js/main.js"></script>
+	</body>
 </html>
