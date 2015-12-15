@@ -1,14 +1,15 @@
 <!doctype html>
 <html>
 <head>
-	<title>Put your title here</title>
+	<title>Adlister Project</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link href="style.css" type="text/css" rel="stylesheet" />
+	<link href="css/main.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<div class="content">
-		<div class="top_block header">
+		<div class="top_block_header">
 			<div class="content">
+				<button class='sign'>Sign-In</button>
 			</div>
 		</div>
 		<div class="background block_2">
