@@ -1,10 +1,6 @@
-<<<<<<< HEAD
+
 <?php
 require_once 'migration.php';
-=======
-<?PHP
-// Seeder file for Adlister
-
 require_once 'dbconnect.php';
 
 
