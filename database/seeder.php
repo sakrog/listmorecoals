@@ -1,8 +1,6 @@
-
 <?php
 require_once 'migration.php';
 require_once 'dbconnect.php';
-
 
 $dbc->exec('TRUNCATE users;');
 
@@ -21,4 +19,5 @@ foreach ($users as $user) {
     $stmt->bindValue(':password', $user['password'], PDO::PARAM_STR);
     $stmt->execute();
 }
+
 ?>
