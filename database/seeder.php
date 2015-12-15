@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 require_once 'migration.php';
 =======
