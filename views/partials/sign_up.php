@@ -1,4 +1,4 @@
-<form role="form" class="form">
+<form role="form" class="form" method="POST">
 	<div class="form-group">
 		<label for="email">Email address:</label>
 		<input type="text" class="form-control" id="email">

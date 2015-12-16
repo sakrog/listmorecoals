@@ -1,11 +1,15 @@
 <?php
+require_once 'User.php';
 class Auth
 {
-	public static $password = '$2y$10$SLjwBwdOVvnMgWxvTI4Gb.YVcmDlPTpQystHMO2Kfyi/DS8rgA0Fm';
 
 	public static function attempt($username, $password)
 	{
-		if($username == 'guest' && password_verify($password, self::$password))
+		$user = User::findUserbyUsername($username);
+		if(!$user) {
+			return false;
+		}
+		if(password_verify($password, $user->password))
 		{
 			$_SESSION['LOGGED_IN_USER'] = $username;
 			return true;
