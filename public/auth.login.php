@@ -1,6 +1,6 @@
 <?php
 	require_once "functions.php";
-	require_once "../Auth.php";
+	require_once "../models/Auth.php";
 	session_start();
 	function pageController()
 	{
