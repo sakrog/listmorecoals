@@ -25,4 +25,9 @@ class User extends Model
         }
         return $instance;
 	}
+
+    public static function findUser($username)
+    {
+        return self::findUserByUsername($username);
+    }
 }

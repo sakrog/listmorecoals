@@ -5,7 +5,7 @@ class Auth
 
 	public static function attempt($username, $password)
 	{
-		$user = User::findUserbyUsername($username);
+		$user = User::findUser($username);
 		if(!$user) {
 			return false;
 		}
