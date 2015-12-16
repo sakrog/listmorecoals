@@ -14,7 +14,7 @@
 		<!-- <link rel="shortcut icon" href="img/mole.png"> -->
 	</head>
 	<body>
-		<?php include "../views/partials/navbar.php"; ?>
+		<?php include "../views/partials/entry_navbar.php"; ?>
 		<?php include "../views/partials/header.php"; ?>
 		<?php include "../views/partials/sign_up.php"; ?>
 		<?php include "../views/partials/footer.php"; ?>
