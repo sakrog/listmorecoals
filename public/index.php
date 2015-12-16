@@ -16,13 +16,7 @@
 	<body>
 		<?php include "../views/partials/navbar.php"; ?>
 		<?php include "../views/partials/header.php"; ?>
-
-
-
-
-
-
-
+		<?php include "../views/partials/sign_up.php"; ?>
 		<?php include "../views/partials/footer.php"; ?>
 		<!-- JQUERY -->
 		<script src="/js/jquery-2.1.4.min.js"></script>

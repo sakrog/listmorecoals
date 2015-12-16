@@ -8,7 +8,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Brand</a>
+			<a class="navbar-brand" href="#">Ad Lister</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,7 +37,7 @@
 			</form>
 			<ul class="nav navbar-nav navbar-right">
 				<li><button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Log In</button></li>
-				<?php include "../public/auth.login.php" ?>
+				<?php include "login_modal.php"; ?>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -52,3 +52,4 @@
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>
+
