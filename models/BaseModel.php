@@ -1,4 +1,7 @@
 <?php
+
+require_once '../utils/insert_id.php';
+
 class Model
 {
     protected static $dbc;
@@ -18,12 +21,12 @@ class Model
     /*
      * Connect to the DB
      */
-    private static function dbConnect()
+    protected static function dbConnect()
     {
         if (!self::$dbc)
         {
             // @TODO: Connect to database
-            require "../database/db_connect.php";
+            require "../database/dbconnect.php";
             self::$dbc = $dbc;
         }
     }
