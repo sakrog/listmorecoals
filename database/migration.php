@@ -19,6 +19,7 @@ $query = 'CREATE TABLE users (
 	city VARCHAR(240) NOT NULL,
 	state VARCHAR(2) NOT NULL,
 	password VARCHAR(240) NOT NULL,
+	username VARCHAR(100) NOT NULL,
 	PRIMARY KEY (userid)
 	)';
 $dbc->exec($query);
