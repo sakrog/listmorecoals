@@ -6,7 +6,7 @@ class User extends Model
 {
 	protected static $table = 'users';
 
-	protected static function findUserByUsername($username)
+	public static function findUserByUsername($username)
 	{
 		self::dbConnect();
         $table = static::$table;
