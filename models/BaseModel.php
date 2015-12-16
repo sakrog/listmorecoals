@@ -1,15 +1,8 @@
 <?php
-
-require_once '../utils/insert_id.php';
-
-class Model
-{
+abstract class Model {
     protected static $dbc;
     protected static $table;
-
-    // Array to store our key/value data
-    private $attributes = [];
-
+    private $attributes = array();
     /*
      * Constructor
      */
@@ -17,126 +10,97 @@ class Model
     {
         self::dbConnect();
     }
-
     /*
      * Connect to the DB
      */
-    protected static function dbConnect()
+    private static function dbConnect()
     {
         if (!self::$dbc)
         {
-            // @TODO: Connect to database
-            require "../database/dbconnect.php";
-            self::$dbc = $dbc;
+            self::$dbc = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
+            self::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
     }
-
-    // Magic setter to populate $contacts array
-    public function __set($name, $value)
-    {
-        // Set the $name key to hold $value in $data
-        $this->attributes[$name] = $value;
-    }
-
-    // Magic getter to retrieve values from $data
+    /*
+     * Get a value from attributes based on name
+     */
     public function __get($name)
     {
-        // Check for existence of array key $name
         if (array_key_exists($name, $this->attributes)) {
             return $this->attributes[$name];
         }
-
         return null;
     }
-
+    /*
+     * Set a new attribute for the object
+     */
+    public function __set($name, $value)
+    {
+        $this->attributes[$name] = $value;
+    }
+    /*
+     * Persist the object to the database
+     */
     public function save()
     {
-    	if (!empty($this->attributes))
-    	{
-    		if(isset($this->attributes['id']))
-    		{
-    			$this->update($this->attributes['id']);
-    		} else
-    		{
-    			$this->insert();
-    		}
-    	}
-    }
-
-    protected function insert()
-    {
-        $newKeysArray = [];
-        $keysArray = array_keys($this->attributes);
-
-		$insert_table = "INSERT INTO " . static::$table . " (";
-		$insert_table .= implode(', ', $keysArray);
-		$insert_table .= ") VALUES (";
-        foreach ($keysArray as $key) { $newKeysArray[] = ':'.$key; }
-		$insert_table .= implode(', ', $newKeysArray);
-		$insert_table .= ");";
-
-		$stmt = self::$dbc->prepare($insert_table);
-
-        foreach ($this->attributes as $key => $value) { $stmt->bindValue(':' . $key, $value, PDO::PARAM_STR); }
-		
-		$stmt->execute();
-
-    }
-
-    protected function update($id)
-    {
-        $updateArray = [];
         $table = static::$table;
-
-        foreach ($this->attributes as $key => $value)
-        {
-            $update = $key . ' = :' . $key;
-            array_push($updateArray, $update);
+        if ($this->id != '') {
+            // there is an id key, so we need to update
+            // remove the id so it is not part of the update query
+            // add it back later
+            $id = $this->id;
+            unset($this->attributes['id']);
+            $columns = array_keys($this->attributes);
+            $updateStmt = array_map(function($key){
+                return "$key = :$key";
+            }, $columns);
+            $updateStmt = implode(', ', $updateStmt);
+            $query = "UPDATE $table SET $updateStmt WHERE id=$id";
+            $stmt = static::$dbc->prepare($query);
+            foreach ($this->attributes as $key => $value) {
+                $stmt->bindValue(":$key", $value, PDO::PARAM_STR);
+            }
+            $stmt->execute();
+            $this->attributes['id'] = $id;
+        } else {
+            // no id, so we need to insert
+            // without manually sorting the array, mysql does some sort of
+            // sorting that screws up the order of the values inserted
+            asort($this->attributes);
+            $columns = array_keys($this->attributes);
+            $paramatizedValues = array_map(function($col){
+                return ":$col";
+            }, $columns);
+            $paramatizedValues = implode(', ', $paramatizedValues);
+            $columnNames = implode(', ', $columns);
+            $query = "INSERT INTO $table ($columnNames) VALUES ($paramatizedValues)";
+            $stmt = static::$dbc->prepare($query);
+            // bind each value
+            foreach ($this->attributes as $key => $value) {
+                $stmt->bindValue(":$key", $value, PDO::PARAM_STR);
+            }
+            $stmt->execute();
         }
-
-        $update_table = implode(', ', $updateArray);
-        $update_table = "UPDATE $table SET $update_table WHERE id = :id";
-
-        $stmt = self::$dbc->prepare($update_table);
-        foreach ($this->attributes as $key => $value)
-        {
-            $stmt->bindValue(':' . $key, $this->attributes[$key], PDO::PARAM_STR);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        }
-        $stmt->execute();
     }
-
     /*
      * Find a record based on an id
      */
     public static function find($id)
     {
-        // Get connection to the database
         self::dbConnect();
         $table = static::$table;
-        // @TODO: Create select statement using prepared statements
-        $query = "SELECT * FROM $table WHERE id = :id";
-        // @TODO: Store the resultset in a variable named $result
+        $query = "SELECT * from {$table} WHERE id = :id";
         $stmt = self::$dbc->prepare($query);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // The following code will set the attributes on the calling object based on the result variable's contents
-
         $instance = null;
-        if ($result)
-        {
+        if ($result) {
             $instance = new static;
             $instance->attributes = $result;
         }
         return $instance;
     }
-
-    public static function getTableName()
-    {
-    	return static::$table;
-    }
-
     /*
      * Find all records in a table
      */
@@ -144,32 +108,29 @@ class Model
     {
         self::dbConnect();
         $table = static::$table;
-        $query = "SELECT * FROM $table";
-        $stmt = self::$dbc->query($query);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // @TODO: Learning from the previous method, return all the matching records
-        return $results;
+        $myQuery = "SELECT * FROM $table";
+        $stmt = self::$dbc->query($myQuery);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $instance = null;
+        if ($result) {
+            $instance = new static;
+            $instance->attributes = $result;
+        }
+        return $instance;
     }
-
-    public function getAttributes()
-    {
-    	return $this->attributes;
-    }
-
     public static function delete($id)
     {
-        // Get connection to the database
         self::dbConnect();
         $table = static::$table;
-        // @TODO: Create select statement using prepared statements
-        $query = "DELETE FROM $table WHERE id = :id";
-        // @TODO: Store the resultset in a variable named $result
-        $stmt = self::$dbc->prepare($query);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
+        $query = "DELETE FROM $table WHERE id=$id";
+        self::$dbc->query($query);
+    }
+    public function doStuff()
+    {
+        echo 'Doing stuff...' . PHP_EOL;
+        sleep(1);
+        echo 'Working...' . PHP_EOL;
+        sleep(2);
+        echo 'Done!' . PHP_EOL;
     }
 }
-
-
-
-
