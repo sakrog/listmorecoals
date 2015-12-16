@@ -10,9 +10,9 @@
                        <span aria-hidden="true">&times;</span>
                        <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">
+                <h2 class="modal-title" id="myModalLabel">
                     Welcome Back!
-                </h4>
+                </h2>
             </div>
             
             <!-- Modal Body -->
