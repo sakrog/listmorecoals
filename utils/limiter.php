@@ -35,6 +35,6 @@ $stmt->bindValue(':limit', 4, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 
-$parks = $stmt->fetchALL(PDO::FETCH_ASSOC);
+$posts = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
 ?>
