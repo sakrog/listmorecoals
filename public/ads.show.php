@@ -1,3 +1,25 @@
+<?php
+
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'adlister');
+define('DB_USER', 'vagrant');
+define('DB_PASS', 'vagrant');
+
+$dbc = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME .'', DB_USER , DB_PASS);
+
+$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+require_once '../utils/Input.php';
+
+$query = "SELECT * FROM posts WHERE id=1";
+$stmt = $dbc->prepare($query);
+$title->bindValue(':title', 1,PDO::PARAM_STR);
+
+$stmt->execute();
+print_r($stmt->fetch(PDO::FETCH_ASSOC));
+
+?>
+
 <html>
 	<head>
 		<title>Ad Lister</title>
@@ -16,15 +38,9 @@
 		<?php include "../views/partials/header.php"; ?>
 
 		<div class="container">
-			<h1>ITEM FOR SALE <small>Price</small></h1>
+			<h1><?= $row['title']; ?><small><?= $post['price']; ?></small></h1>
 			<div class="description">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>	
+				<?= $post['description'];?>
 		</div>	
 
 
@@ -37,3 +53,4 @@
 		<script src="js/main.js"></script>
 	</body>
 </html>
+
