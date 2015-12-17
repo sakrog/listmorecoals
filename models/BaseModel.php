@@ -2,7 +2,14 @@
 abstract class Model {
     protected static $dbc;
     protected static $table;
+<<<<<<< HEAD
     private $attributes = array();
+=======
+
+    // Array to store our key/value data
+    protected $attributes = [];
+
+>>>>>>> be00e406be8eb76336ac4b3e352c1254e8b5a0c8
     /*
      * Constructor
      */
