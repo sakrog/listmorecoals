@@ -6,7 +6,6 @@ define('DB_PASS', 'vagrant');
 
 require_once 'dbconnect.php';
 
-
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
 
 $query = 'DROP TABLE IF EXISTS users';
