@@ -24,8 +24,6 @@ class Post extends Model
 		$instance->attributes = $result;
 		}
 		return $instance;
-		
-		var_dump($instance);
 	}
 }
 $post = Post::findPostById(1);
@@ -50,7 +48,8 @@ $post = Post::findPostById(1);
 		<?php include "../views/partials/header.php"; ?>
 
 		<div class="container">
-			<h1><?= $post->title; ?>
+			<h1><?= $post->title; ?><small>$<?= $post->price; ?></small>
+				<br><h4><?= $post->description; ?></h4>
 		</div>	
 
 
