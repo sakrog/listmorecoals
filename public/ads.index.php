@@ -1,13 +1,4 @@
-<?php
-session_start();
 
-require_once '../utils/insert_id.php';
-require_once '../utils/dbconnect.php';
-require_once '../utils/Input.php';
-require_once '../utils/limiter.php';
-require_once "../models/Auth.php";
-
-?>
 <!DOCTYPE html>
  
 <html>
