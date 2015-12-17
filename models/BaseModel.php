@@ -1,7 +1,5 @@
 <?php
 
-require_once '../utils/insert_id.php';
-
 class Model
 {
     protected static $dbc;
