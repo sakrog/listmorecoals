@@ -8,7 +8,7 @@ class Model
     protected static $table;
 
     // Array to store our key/value data
-    private $attributes = [];
+    protected $attributes = [];
 
     /*
      * Constructor

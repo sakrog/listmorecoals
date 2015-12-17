@@ -5,10 +5,15 @@ class Auth
 
 	public static function attempt($username, $password)
 	{
-		$user = User::findUser($username);
-		if(!$user) {
-			return false;
-		}
+		// $password = password_hash($password, PASSWORD_DEFAULT);
+		var_dump($password);
+		$user = User::findUserByUsername($username);
+		var_dump($user->username);
+		var_dump($user->password);
+		var_dump(password_verify($password, $user->password));
+		// if(!$user) {
+		// 	return false;
+		// }
 		if(password_verify($password, $user->password))
 		{
 			$_SESSION['LOGGED_IN_USER'] = $username;
