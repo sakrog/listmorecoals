@@ -1,6 +1,6 @@
 <?php
-require_once 'migration.php';
 require_once 'dbconnect.php';
+require_once 'migration.php';
 
 $dbc->exec('TRUNCATE users;');
 
