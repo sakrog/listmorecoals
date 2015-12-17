@@ -23,11 +23,7 @@ class User extends Model
             $instance = new static;
             $instance->attributes = $result;
         }
+        var_dump($instance);
         return $instance;
 	}
-
-    public static function findUser($username)
-    {
-        return self::findUserByUsername($username);
-    }
 }
