@@ -5,13 +5,8 @@ require_once '../utils/insert_id.php';
 require_once '../utils/dbconnect.php';
 require_once '../utils/Input.php';
 require_once '../utils/limiter.php';
-require_once "../Auth.php";
+require_once "../models/Auth.php";
 
-// if(!Auth::check()) {
-//     header('Location: /index.php');
-//     die();
-// }
-// $name = Auth::user();
 ?>
 <!DOCTYPE html>
  
