@@ -1,20 +1,34 @@
 <?php
 
-define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'adlister');
-define('DB_USER', 'vagrant');
-define('DB_PASS', 'vagrant');
-
-$dbc = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME .'', DB_USER , DB_PASS);
-
-$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 require_once '../utils/Input.php';
+require_once '../models/BaseModel.php';
 
-$query = "SELECT * FROM posts WHERE id=1";
-$stmt = $dbc->prepare($query);
-$title->bindValue(':title', 1,PDO::PARAM_STR);
+class Post extends Model
+{
+	protected static $table = 'posts';
 
+	public static function findPostById($id)
+	{
+		self::dbConnect();
+		$table=static::$table;
+		$query = "SELECT * FROM $table WHERE id=:id";
+		$stmt = self::$dbc->prepare($query);
+		$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$instance = null;
+		if($result)
+		{
+		$instance = new static;
+		$instance->attributes = $result;
+		}
+		return $instance;
+		
+		var_dump($instance);
+	}
+}
+$post = Post::findPostById(1);
 
 ?>
 
@@ -36,9 +50,7 @@ $title->bindValue(':title', 1,PDO::PARAM_STR);
 		<?php include "../views/partials/header.php"; ?>
 
 		<div class="container">
-			<h1><?= $row['title']; ?><small><?= $post['price']; ?></small></h1>
-			<div class="description">
-				<?= $post['description'];?>
+			<h1><?= $post->title; ?>
 		</div>	
 
 
