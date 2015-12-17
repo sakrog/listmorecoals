@@ -1,4 +1,5 @@
 <form role="form" class="form" method="POST">
+	<h2>Sign up to buy, sell and trade!</h2>
 	<div class="form-group">
 		<label for="first_name">First Name:</label>
 		<input type="text" class="form-control" id="first_name">
