@@ -1,5 +1,4 @@
 <?php include "../database/dbconnect.php"; ?>
-<?php include "../models/Input.php"; ?>
 <?php 
 function checkValues()
 {
@@ -56,6 +55,64 @@ function insertPark($dbc)
 
 	return $errors;
 }
+
+function deletePark($dbc)
+{
+	if (Input::has('id')) {
+		$delete_column = "DELETE FROM posts WHERE id = :id";
+		$del = $dbc->prepare($delete_column);
+		$del->bindValue(':id', Input::get('id'), PDO::PARAM_STR);
+		$del->execute();
+	}
+}
+
+function pageController($dbc)
+{
+	$errors = null;
+
+
+	if (!empty($_POST)) {
+		if (checkValues()) {
+			$errors = insertPark($dbc);			
+		} else {
+			$message = "Invalid format. Please try again.";
+			$javascript = "<script type='text/javascript'>alert('$message');</script>";
+			echo $javascript;
+		}
+	}
+
+	deletePark($dbc);
+
+	// Count
+	$countAll = 'SELECT count(*) FROM national_parks';
+	$count_stmt = $dbc->query($countAll);
+	$count = $count_stmt->fetchColumn();
+	$limit = 2;
+	$max_page = ceil($count / $limit);
+
+	// Sanitizing
+	$page = Input::has('page') ? Input::get('page') : 1; // grabs url value if exists, if not set to 1
+	$page = (is_numeric($page)) ? $page : 1; // is value numeric, if not set to 1
+	$page = ($page > 0) ? $page : 1; // is value greater than zero, if not set to 1
+	$page = ($page <= $max_page) ? $page : $max_page; // is value less than or equal maximum amount of pages, if not set to max page
+
+	// Offset
+	$offset = $page * $limit - $limit;
+	$selectAll = 'SELECT * FROM national_parks LIMIT :limit OFFSET :offset';
+	$stmt = $dbc->prepare($selectAll);
+	$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+	$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+	$stmt->execute();
+	$parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	return array(
+		'page' => $page,
+		'parks' => $parks,
+		'errors' => $errors,
+		'max_page' => $max_page
+		);
+}
+extract(pageController($dbc));
 ?>
 
 <!-- Modal -->
@@ -67,7 +124,7 @@ function insertPark($dbc)
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">What Are You Posting?</h4>
 			</div>
-			<form role="form">
+			<form role="form" method="POST">
 				<div class="form-group col-md-6">
 					<label for="title">Title</label>
 					<input type="text" class="form-control" name="title">
