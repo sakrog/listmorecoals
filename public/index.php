@@ -16,6 +16,8 @@ require_once '../database/config.php'
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<!-- TITLE IMG -->
 		<!-- <link rel="shortcut icon" href="img/mole.png"> -->
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
 	</head>
 	<body>
 		<?php include "../views/partials/entry_navbar.php"; ?>
@@ -24,9 +26,11 @@ require_once '../database/config.php'
 		<?php include "../views/partials/footer.php"; ?>
 		<!-- JQUERY -->
 		<script src="/js/jquery-2.1.4.min.js"></script>
+		<script src="/js/jquery.validate.js"></script>
 		<!-- BOOTSTRAP JS -->
 		<script src="/js/bootstrap.min.js"></script>
 		<!-- CUSTOM JS -->
 		<script src="js/main.js"></script>
+		<script src="js/signup_form.js"></script>
 	</body>
 </html>
