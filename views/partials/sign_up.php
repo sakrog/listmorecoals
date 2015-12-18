@@ -6,8 +6,15 @@ function pageController2($dbc)
 {
 
 	if(!empty($_POST)){
+		try{
+			User::ifUserExists(Input::get('email'));
+		} catch (Exception $e){
+			
+			echo "Please use a different email";
+			$noemail = true;
+		}
 
-		if(Input::setAndNotEmpty('first_name')) {
+		if(!isset($noemail) && Input::setAndNotEmpty('first_name')) {
 			
 			$query = "INSERT INTO users (first_name, last_name, email, city, state, password, username) VALUES (:first_name, :last_name, :email, :city, :state, :password, :username)";
 
@@ -20,7 +27,6 @@ function pageController2($dbc)
 			$stmt2->bindValue(':password', password_hash(Input::get('password'),PASSWORD_DEFAULT), PDO::PARAM_STR);
 			$stmt2->bindValue(':username', Input::get('username'), PDO::PARAM_STR);
 			$stmt2->execute();
-				
 		}
 	}
 }

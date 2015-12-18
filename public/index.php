@@ -5,7 +5,7 @@ require_once '../database/config.php'
 <!DOCTYPE html>
 
 <html>
-	<head>
+	<head>	
 		<title>Ad Lister</title>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
