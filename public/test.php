@@ -1,7 +1,5 @@
 <?php
 require_once '../models/Input.php';
-// require_once '../models/BaseModel.php';
-require_once '../utils/insert_id.php';
 require_once '../database/dbconnect.php';
 
 $errors = [];
