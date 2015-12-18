@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" tabindex = "-1" id="myModal" role="dialog">
+<div class="modal fade" tabindex="-1" id="post_modal" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- Modal content-->
@@ -7,7 +7,7 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">What Are You Posting?</h4>
 			</div>
-			<form role="form">
+			<form role="form" method="POST">
 				<div class="form-group col-md-6">
 					<label for="title">Title</label>
 					<input type="text" class="form-control" name="title">
