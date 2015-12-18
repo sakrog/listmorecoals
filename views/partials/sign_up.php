@@ -1,8 +1,5 @@
 <?php
 
-require_once '../models/Input.php';
-require_once '../database/dbconnect.php';
-
 var_dump($dbc);
 
 function pageController2($dbc)
