@@ -1,5 +1,10 @@
+<?php
+require_once '../models/Input.php';
+require_once '../database/dbconnect.php';
+?>
+
 <!DOCTYPE html>
- 
+
 <html>
 	<head>
 		<title>Ad Lister</title>
