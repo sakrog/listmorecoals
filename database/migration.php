@@ -26,8 +26,10 @@ $query = 'CREATE TABLE posts (
 	userid INT UNSIGNED NOT NULL,
 	post_date DATE NOT NULL,
 	title VARCHAR(240) NOT NULL,
-	price INT(240) NOT NULL,
+	price VARCHAR(240) NOT NULL,
 	description VARCHAR(240) NOT NULL,
+	email VARCHAR(240) NOT NULL,
+	location VARCHAR(240) NOT NULL,
 	PRIMARY KEY (id)
 	)';
 $dbc->exec($query);
