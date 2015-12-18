@@ -1,0 +1,13 @@
+.header {
+  font-size: 22px;
+  background-color: #337ab7;
+}
+body {
+  padding-right: 125px;
+  padding-left: 125px;
+  padding-top: 30px;
+  font-size: 20px;
+}
+.body {
+  font-family: 'Indie Flower', cursive;  
+}
