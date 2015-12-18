@@ -1,4 +1,5 @@
 <?php 
+require_once "../database/config.php";
 require_once "../database/dbconnect.php";
 require_once "../models/Input.php";
 
