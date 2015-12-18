@@ -40,19 +40,21 @@ class Input
 
     public static function getString($key, $min = 1, $max = 240)
     {
-        $key = ucfirst($key);
+        // $key = ucfirst($key);
         $key = str_replace('_', ' ', $key);
         $value = trim(self::get($key));
-        if(!is_string($value) || !is_numeric($min) && !is_numeric($max))
-        {
-            throw new InvalidArgumentException("{$key} must be a string!");
-        } else if (!self::setAndNotEmpty($value)) {
-            throw new OutOfRangeException("{$key} must not be empty!");
-        } else if (!is_string($value)) {
-            throw new DomainException("{$key} must be a string type!");
-        } else if (strlen($value) < $min || strlen($value) > $max) {
-            throw new LengthException("{$key} must be within {$min} to {$max} characters long!");
-        }
+
+        // if(!is_string($value) || !is_numeric($min) && !is_numeric($max))
+        // {
+        //     throw new InvalidArgumentException("{$key} must be a string!");
+        // } else if (!self::setAndNotEmpty($value)) {
+        //     throw new OutOfRangeException("{$key} must not be empty!");
+        // } else if (!is_string($value)) {
+        //     throw new DomainException("{$key} must be a string type!");
+        // } else if (strlen($value) < $min || strlen($value) > $max) {
+        //     throw new LengthException("{$key} must be within {$min} to {$max} characters long!");
+        // }
+        
         return $value;
     }
 
