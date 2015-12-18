@@ -1,4 +1,3 @@
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -26,9 +25,7 @@
 						<label><input type="checkbox"/>Remember Me</label>
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
-					<script language="javascript">
-				    	<?= $javascript; ?>
-					</script>
+					
 				</form>
 			</div>
 		</div>

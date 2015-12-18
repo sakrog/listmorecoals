@@ -1,7 +1,5 @@
 <?php
 
-var_dump($dbc);
-
 function pageController2($dbc)
 {
 
@@ -35,35 +33,39 @@ pageController2($dbc);
 
 ?>
 
-<form role="form" class="form" method="POST">
+<form role="form" class="form" id="commentForm" method="POST">
 	<h2>Sign up to buy, sell and trade!</h2>
 	<div class="form-group">
 		<label for="first_name">First Name:</label>
-		<input type="text" class="form-control" name="first_name">
+		<input type="text" class="form-control" name="first_name" id="first_name">
 	</div>
 	<div class="form-group">
 		<label for="last_name">Last Name:</label>
-		<input type="text" class="form-control" name="last_name">
+		<input type="text" class="form-control" name="last_name" id="last_name">
 	</div>
 	<div class="form-group">
 		<label for="email">Email Address:</label>
-		<input type="email" class="form-control" name="email">
+		<input type="email" class="form-control" name="email" id="email">
 	</div>
 	<div class="form-group">
 		<label for="city">City:</label>
-		<input type="text" class="form-control" name="city">
+		<input type="text" class="form-control" name="city" id="city">
 	</div>
 	<div class="form-group">
 		<label for="state">State:</label>
-		<input type="text" class="form-control" name="state">
+		<input type="text" class="form-control" name="state" id="state">
 	</div>
 	<div class="form-group">
 		<label for="username">Username:</label>
-		<input type="text" class="form-control" name="username">
+		<input type="text" class="form-control" name="username" id="username">
 	</div>
 	<div class="form-group">
 		<label for="pwd">Password:</label>
-		<input type="password" class="form-control" name="pwd">
+		<input type="password" class="form-control" name="pwd" id="password">
+	</div>
+	<div class="form-group">
+		<label for="agree">Please agree to not be a troll</label>
+		<input type="checkbox" class="checkbox" id="agree" name="agree">
 	</div>
 	<button type="submit" class="btn btn-default">Submit</button>
 </form>
