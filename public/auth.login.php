@@ -1,8 +1,5 @@
 <?php
-	require_once "functions.php";
-	require_once "../models/Auth.php";
-	require_once "../models/User.php";
-
+	
 	session_start();
 	function pageController()
 	{
