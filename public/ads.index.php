@@ -22,6 +22,7 @@
 			<img src="http://placehold.it/350x350" class="img-circle">
 			<img src="http://placehold.it/350x350" class="img-rounded">
 		</div>
+		<?php include "../views/partials/post_modal.php"; ?>
 		<?php include "../views/partials/footer.php"; ?>
 		<!-- JQUERY -->
 		<script src="/js/jquery-2.1.4.min.js"></script>
