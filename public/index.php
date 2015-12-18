@@ -1,5 +1,9 @@
+<?php
+require_once '../database/config.php'
+?>
+
 <!DOCTYPE html>
- 
+
 <html>
 	<head>
 		<title>Ad Lister</title>
