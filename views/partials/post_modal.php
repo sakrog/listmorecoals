@@ -28,6 +28,10 @@
 					<label for="price">Price</label>
 					<input type="text" class="form-control" name="price">
 				</div> 
+				<div class="adCreate form-group">
+					<label for="image">Image Input</label>
+					<input type="file" name="image" id="image">
+				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary btn-lg">Submit</button>
 				</div>

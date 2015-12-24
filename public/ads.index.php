@@ -93,7 +93,7 @@ $stmt = $dbc->prepare($selectAll);
 $stmt->bindValue(':limit', 4, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
-$posts = $stmt->fetchALL(PDO::FETCH_ASSOC);
+$posts = $stmt->fetchALL(PDO::FETCH_ASSOC);	
 
 if (!empty($_POST)) {
 	if (checkValues()) {
@@ -105,6 +105,18 @@ if (!empty($_POST)) {
 		echo $javascript;
 	}
 }
+if(Input::has('title')){
+    if($_FILES) {
+        $uploads_directory = '/img';
+        $filename = $uploads_directory . basename($_FILES['image']['name']);
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $filename)) {
+            // echo '<p>The file '. basename( $_FILES['image']['name']). ' has been uploaded.</p>';
+        } else {
+            //alert("Sorry, there was an error uploading your file.");
+        }
+    }
+   }
+?>
 ?>
 <!DOCTYPE html>
  
@@ -135,6 +147,7 @@ if (!empty($_POST)) {
 			<th class="header">Title</th>
 			<th class="header col-md-1">Price</th>
 			<th class="header col-md-6">Description</th>
+			<th class="header col-md-6">Image</th>
 		</tr>
 
 			<?php
@@ -145,13 +158,16 @@ if (!empty($_POST)) {
 					<td><?= $post['title']?></td> 
 					<td><?= $post['price']?></td>
 					<td><?= $post['description']?></td>
+					<td><?= $post['image']?></td>
 			<?php endforeach ?>
 			</tr>
 <!-- 	<div class="col-md-2"></div>
  -->	</table>
 <!-- 	</div>
  -->		<?= "You are on page $page" ?>
- <?php if ($page != 1) : ?>
+ <?php if ($page < 1) : ?>
+
+ <?php elseif ($page != 1) : ?>
 	<a button type="button" class="btn btn-primary" href="?page=<?= ($page - 1); ?>">Previous Page</a>
 <?php endif; ?>
 <?php if ($page != $max_page) : ?>
