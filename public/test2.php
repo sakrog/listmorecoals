@@ -40,7 +40,7 @@ function insertPost($dbc)
 
 	$date = date('Y-m-d');
 
-	$insert_table = "INSERT INTO posts (userid, post_date, title, price, description, email, location, image) VALUES (:userid, :post_date, :title, :price, :description, :email, :location, :image)";
+	$insert_table = "INSERT INTO posts (userid, post_date, title, price, description, email, location) VALUES (:userid, :post_date, :title, :price, :description, :email, :location)";
 
     $stmt = $dbc->prepare($insert_table);
     $stmt->bindValue(':userid', 1, PDO::PARAM_STR);
@@ -50,7 +50,6 @@ function insertPost($dbc)
     $stmt->bindValue(':description', $description, PDO::PARAM_STR);
     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->bindValue(':location', $location, PDO::PARAM_STR);
-    $stmt->bindValue(':image', $image, PDO::PARAM_STR);
 
     $stmt->execute();
 
