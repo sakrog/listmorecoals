@@ -1,5 +1,5 @@
 <?php
-
+require_once 'config.php';
 require_once 'dbconnect.php';
 
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
@@ -30,6 +30,7 @@ $query = 'CREATE TABLE posts (
 	description VARCHAR(240) NOT NULL,
 	email VARCHAR(240) NOT NULL,
 	location VARCHAR(240) NOT NULL,
+	image LONGBLOB NOT NULL,
 	PRIMARY KEY (id)
 	)';
 $dbc->exec($query);
