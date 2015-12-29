@@ -6,6 +6,6 @@ define('DB_PASS', 'vagrant');
 
 require_once '../models/Input.php';
 require_once '../database/dbconnect.php';
-require_once "functions.php";
+require_once "../public/functions.php";
 require_once "../models/Auth.php";
 require_once "../models/User.php";

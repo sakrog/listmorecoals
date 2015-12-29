@@ -120,9 +120,6 @@ if (!empty($_POST)) {
 	}
 }
 
-
-
-?>
 ?>
 <!DOCTYPE html>
  

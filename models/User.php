@@ -24,7 +24,6 @@ class User extends Model
             $instance = new static;
             $instance->attributes = $result;
         }
-        var_dump($instance);
         return $instance;
 	}
 

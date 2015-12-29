@@ -12,6 +12,6 @@
 
 	function escape($input){
 		return htmlspecialchars(strip_tags($input));
-	}
+	}	
 
 ?>

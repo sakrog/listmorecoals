@@ -1,5 +1,25 @@
 <?php
-require_once '../database/config.php'
+require_once '../database/config.php';
+session_start();
+function pageController()
+{
+	$sessionId = session_id();
+	$username = inputGet('username');
+	$password = inputGet('password');
+	$javascript = '';
+	if(Auth::attempt($username, $password)){
+        header('Location: ads.index.php');
+        die();
+    }else if ($username != "" || $password != ""){
+		$javascript = 'alert("Incorrect input.")';
+    }
+	return array(
+		'username' 	 => $username,
+		'password' => $password,
+		'javascript' => $javascript
+	);
+};
+extract(pageController());
 ?>
 
 <!DOCTYPE html>
