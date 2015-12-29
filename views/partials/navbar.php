@@ -7,15 +7,10 @@
 			<li><a class="btn btn-lg" data-toggle="modal" data-target="#post_modal">Post</a></li>
 			<li><a class="btn btn-lg" href="index.php">Sign Out</a></li>
 		</ul>
-    	<form class="form-inline" role="search">
-	        <div class="form-group">
-	            <input type="text" class="form-control" placeholder="Min..." name="srch-term" id="srch-term">
-	        </div>
-	        <div class="form-group">
-	            <input type="text" class="form-control" placeholder="Max..." name="srch-term" id="srch-term">
-	        </div>
+    	<form class="form-inline" role="search" name="form1" method="post" action="searchresults.php">
             <div class="form-group">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+			<input name="search" type="text" size="40" maxlength="50" placeholder="Search">
+	        	<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
     	</form>
 	</div>
