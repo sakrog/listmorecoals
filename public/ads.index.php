@@ -39,9 +39,22 @@ function insertPost($dbc)
 		array_push($errors, $e->getMessage());
 	}
 
+	if(Input::has('title')){
+    	if($_FILES) {
+    		// Create variable for the uploads direc for images in our server
+    		$uploads_directory = 'img/uploads/';
+    		$filename = $uploads_directory . basename($_FILES['image']['name']);
+        	if (move_uploaded_file($_FILES['image']['tmp_name'], $filename)) {
+            // echo '<p>The file '. basename( $_FILES['image']['name']). ' has been uploaded.</p>';
+        	} else {
+       	    //alert("Sorry, there was an error uploading your file.");
+       		}
+    	}
+	}
+
 	$date = date('Y-m-d');
 
-	$insert_table = "INSERT INTO posts (userid, post_date, title, price, description, email, location) VALUES (:userid, :post_date, :title, :price, :description, :email, :location)";
+	$insert_table = "INSERT INTO posts (userid, post_date, title, price, description, email, location, image) VALUES (:userid, :post_date, :title, :price, :description, :email, :location, :image)";
 
     $stmt = $dbc->prepare($insert_table);
     $stmt->bindValue(':userid', 1, PDO::PARAM_STR);
@@ -51,6 +64,7 @@ function insertPost($dbc)
     $stmt->bindValue(':description', $description, PDO::PARAM_STR);
     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->bindValue(':location', $location, PDO::PARAM_STR);
+    $stmt->bindValue(':image', $filename, PDO::PARAM_STR);
 
     $stmt->execute();
 
@@ -74,7 +88,7 @@ $count = $stmt1->fetchColumn();
 $limit = 4;
 $max_page = ceil($count / $limit);
 
-// Sanitizing
+// // Sanitizing
 $page = Input::has('page') ? Input::get('page') : 1;
 $page = (is_numeric($page)) ? $page : 1;
 $page = ($page > 0) ? $page : 1;
@@ -94,7 +108,7 @@ $stmt = $dbc->prepare($selectAll);
 $stmt->bindValue(':limit', 4, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
-$posts = $stmt->fetchALL(PDO::FETCH_ASSOC);
+$posts = $stmt->fetchALL(PDO::FETCH_ASSOC);	
 
 if (!empty($_POST)) {
 	if (checkValues()) {
@@ -106,6 +120,10 @@ if (!empty($_POST)) {
 		echo $javascript;
 	}
 }
+
+
+
+?>
 ?>
 <!DOCTYPE html>
  
@@ -129,13 +147,15 @@ if (!empty($_POST)) {
 	<body>
 		<?php include "../views/partials/navbar.php"; ?>
 		<?php include "../views/partials/header.php"; ?>
+
 		<table class="table table-hover table-bordered table-striped">
-		<tr class='table-hover'>
+		<tr class='table-hover	'>
 			<th class="header">Photo</th>
 			<th class="header col-md-1">Date Posted</th>
 			<th class="header">Title</th>
 			<th class="header col-md-1">Price</th>
 			<th class="header col-md-6">Description</th>
+			<th class="header col-md-6">Image</th>
 		</tr>
 
 			<?php
@@ -146,18 +166,23 @@ if (!empty($_POST)) {
 					<td><?= $post['title']?></td> 
 					<td><?= $post['price']?></td>
 					<td><?= $post['description']?></td>
+					<td><img src="<?= $post['image']?>"></td>
+					
 			<?php endforeach ?>
 			</tr>
 <!-- 	<div class="col-md-2"></div>
  -->	</table>
-<!-- 	</div>
- -->		<?= "You are on page $page" ?>
- <?php if ($page != 1) : ?>
-	<a button type="button" class="btn btn-primary" href="?page=<?= ($page - 1); ?>">Previous Page</a>
-<?php endif; ?>
-<?php if ($page != $max_page) : ?>
-	<a button type="button" class="btn btn-primary" href="?page=<?= ($page + 1); ?>">Next Page</a>
-<?php endif; ?>
+<!-- 	</div -->		
+		<?= "You are on page $page" ?>
+ 		<?php if ($page < 1) : ?>
+
+ 		<?php elseif ($page != 1) : ?>
+			<a button type="button" class="btn btn-primary" href="?page=<?= ($page - 1); ?>">Previous Page</a>
+		<?php endif; ?>
+		<?php if ($page != $max_page) : ?>
+			<a button type="button" class="btn btn-primary" href="?page=<?= ($page + 1); ?>">Next Page</a>
+		<?php endif; ?>
+	
 		<?php include "../views/partials/post_modal.php"; ?>
 		<?php include "../views/partials/footer.php"; ?>
 		<!-- JQUERY -->

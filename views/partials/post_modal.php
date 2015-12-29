@@ -7,7 +7,7 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">What Are You Posting?</h4>
 			</div>
-			<form role="form" method="POST">
+			<form role="form" method="POST" enctype="multipart/form-data">
 				<div class="form-group col-md-6">
 					<label for="title">Title</label>
 					<input type="text" class="form-control" name="title">
@@ -28,6 +28,10 @@
 					<label for="price">Price</label>
 					<input type="text" class="form-control" name="price">
 				</div> 
+				<div class="adCreate form-group">
+					<label for="image"></label>
+					<input type="file" name="image" id="image">
+				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary btn-lg">Submit</button>
 				</div>

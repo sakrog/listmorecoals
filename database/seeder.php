@@ -1,14 +1,14 @@
 <?php
+require_once 'config.php';
 require_once 'dbconnect.php';
-require_once 'migration.php';
 
 $dbc->exec('TRUNCATE users;');
 
 $users = [
-	['first_name' => 'Roger', 'last_name'=> 'Chin', 'email'=> 'roger.sc.chin@gmail.com', 'city'=>'San Antonio', 'state'=>'Tx', 'password' => 'password']
+	['first_name' => 'Roger', 'last_name'=> 'Chin', 'email'=> 'roger.sc.chin@gmail.com', 'city'=>'San Antonio', 'state'=>'Tx', 'password' => 'password', 'username' => 'roger123']
 ];
 
-$query = 'INSERT INTO users(first_name, last_name, email, city, state, password) VALUES(:first_name, :last_name, :email, :city, :state, :password)';
+$query = 'INSERT INTO users(first_name, last_name, email, city, state, password, username) VALUES(:first_name, :last_name, :email, :city, :state, :password, :username)';
 $stmt = $dbc->prepare($query);
 foreach ($users as $user) {
     $stmt->bindValue(':first_name', $user['first_name'], PDO::PARAM_STR);
@@ -17,6 +17,7 @@ foreach ($users as $user) {
     $stmt->bindValue(':city', $user['city'], PDO::PARAM_STR);
     $stmt->bindValue(':state', $user['state'], PDO::PARAM_STR);
     $stmt->bindValue(':password', $user['password'], PDO::PARAM_STR);
+    $stmt->bindValue(':username', $user['username'], PDO::PARAM_STR);
     $stmt->execute();
 }
 
