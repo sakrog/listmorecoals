@@ -1,6 +1,6 @@
 <?php
 
-require_once '../utils/Input.php';
+require_once '../database/config.php';
 require_once '../models/BaseModel.php';
 
 class Post extends Model
@@ -18,6 +18,7 @@ class Post extends Model
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		$instance = null;
+
 		if($result)
 		{
 		$instance = new static;
@@ -27,6 +28,7 @@ class Post extends Model
 	}
 }
 $post = Post::findPostById(1);
+echo "asldjadf";
 
 ?>
 
