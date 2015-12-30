@@ -4,12 +4,11 @@ function pageController()
 {
 	session_start();
 	$sessionId = session_id();
-	$username = inputGet('username');
-	$password = inputGet('password');
+	$username = 'thomas';
+	$password = 'thomas';
 	$javascript = '';
 	if(Auth::attempt($username, $password)){
         header('Location: ads.index.php');
-        die();
     }else if ($username != "" || $password != ""){
 		$javascript = 'alert("Incorrect input.")';
     }
