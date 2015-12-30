@@ -1,8 +1,8 @@
 <?php
 require_once '../database/config.php';
-session_start();
 function pageController()
 {
+	session_start();
 	$sessionId = session_id();
 	$username = inputGet('username');
 	$password = inputGet('password');
