@@ -1,6 +1,6 @@
 <?php
 
-require_once '../utils/Input.php';
+require_once '../database/config.php';
 require_once '../models/BaseModel.php';
 
 class Post extends Model
