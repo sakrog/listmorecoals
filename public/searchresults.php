@@ -68,3 +68,13 @@ do { ?>
 else
 echo "No results found";
 ?>
+<?php include "../views/partials/post_modal.php"; ?>
+<?php include "../views/partials/footer.php"; ?>
+		<!-- JQUERY -->
+		<script src="/js/jquery-2.1.4.min.js"></script>
+		<!-- BOOTSTRAP JS -->
+		<script src="/js/bootstrap.min.js"></script>
+		<!-- CUSTOM JS -->
+		<script src="js/main.js"></script>
+</body>
+</html>
