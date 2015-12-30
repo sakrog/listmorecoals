@@ -1,5 +1,10 @@
 <?php
-require_once '../database/config.php'
+require_once '../database/config.php';
+
+	session_start();
+	$sessionId = session_id();
+	$_SESSION["username"] = "ABC123"
+	
 ?>
 
 <!DOCTYPE html>

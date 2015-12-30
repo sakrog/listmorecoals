@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once '../database/config.php';
 require_once '../models/BaseModel.php';
@@ -49,9 +50,11 @@ $post = Post::findPostById(1);
 
 		<div class="container">
 			<h1><?= $post->title; ?><small>$<?= $post->price; ?></small>
+				<hr>
 				<br><h4><?= $post->description; ?></h4>
 		</div>	
 
+		<?= $_SESSION["username"]?>
 
 		<?php include "../views/partials/footer.php"; ?>
 		<!-- JQUERY -->
