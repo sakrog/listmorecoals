@@ -59,15 +59,14 @@ do { ?>
 	<td><?php echo $search_rs['description']; ?></td>
 	<td><?php echo $search_rs['email']; ?></td>
 	<td><?php echo $search_rs['location']; ?></td>
-	<td><img src=<?php echo $search_rs['image']; ?>></td>
+	<td><img src="<?php echo $search_rs['image']; ?>" class="img-responsive"></td>
 </tr>
 <?php
 // Kindly note, how false and assignment is used here.
 } while (false != ($search_rs = mysqli_fetch_array($result)));
 }
 else
-echo "No results found";
-?>
+echo "No results found";?>
 <?php include "../views/partials/post_modal.php"; ?>
 <?php include "../views/partials/footer.php"; ?>
 		<!-- JQUERY -->
