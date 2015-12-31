@@ -1,4 +1,5 @@
 <?php
+require_once "../database/config.php";
 
 function pageController2($dbc)
 {
@@ -22,7 +23,7 @@ function pageController2($dbc)
 			$stmt2->bindValue(':email', Input::get('email'), PDO::PARAM_STR);
 			$stmt2->bindValue(':city', Input::get('city'), PDO::PARAM_STR);
 			$stmt2->bindValue(':state', Input::get('state'), PDO::PARAM_STR);
-			$stmt2->bindValue(':password', password_hash(Input::get('password'), PASSWORD_DEFAULT), PDO::PARAM_STR);
+			$stmt2->bindValue(':password', password_hash(Input::get('pwd'), PASSWORD_BCRYPT), PDO::PARAM_STR);
 			$stmt2->bindValue(':username', Input::get('username'), PDO::PARAM_STR);
 			$stmt2->execute();
 		}

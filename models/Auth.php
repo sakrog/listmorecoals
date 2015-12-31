@@ -6,11 +6,6 @@ class Auth
 	public static function attempt($username, $password)
 	{
 		$user = User::findUserByUsername($username);
-		var_dump($user->password);
-		$hashpass = password_hash('thomas', PASSWORD_DEFAULT);
-		var_dump($hashpass);
-		$temp = password_verify($password, $user->password);
-		var_dump($temp);
 
 		if(password_verify($password, $user->password))
 		{

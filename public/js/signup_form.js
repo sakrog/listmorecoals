@@ -20,7 +20,7 @@ $(document).ready(function() {
 		},
 		messages: {
 			first_name: "Please enter your first name",
-			last_name: "Please enter your leastast name",
+			last_name: "Please enter your last name",
 			state: {
 				maxlength: "Please use abbrevation for your State"
 			},

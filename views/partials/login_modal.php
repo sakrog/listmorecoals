@@ -14,20 +14,12 @@
 			<div class="modal-body">
 				<form role="form" method="POST">
 					<div class="form-group">
-<<<<<<< HEAD
-						<label for="exampleUserName1">Username</label><br>
-						<input type="text" name="name" placeholder="Enter username"><br>
+						<label for="username_login">Username</label><br>
+						<input type="text" name="username_login" placeholder="Enter username"><br>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1">Password</label><br>
-=======
-						<label for="username">Username</label><br>
-						<input type="text" name="username" placeholder="Enter username"><br>
-					</div>
-					<div class="form-group">
-						<label for="password">Password</label><br>
->>>>>>> 83738052c096ceb4536b419ef60e5c0f980002c7
-						<input type="password" name="password" placeholder="Enter password"><br>
+						<label for="password_login">Password</label><br>
+						<input type="password" name="password_login" placeholder="Enter password"><br>
 					</div>
 					<div class="checkbox">
 						<label><input type="checkbox"/>Remember Me</label>

@@ -1,17 +1,21 @@
 <?php
 require_once '../database/config.php';
 
+
 function pageController()
 {
 	session_start();
 	$sessionId = session_id();
-	$username = 'thomas';
-	$password = 'thomas';
+	$_SESSION['tempuser'] = Input::get('username_login');
+	$_SESSION['temppass'] = Input::get('password_login');
+	$username = $_SESSION['tempuser'];
+	$password = $_SESSION['temppass'];
 	$javascript = '';
 	if(Auth::attempt($username, $password)){
         header('Location: ads.index.php');
     }else if ($username != "" || $password != ""){
 		$javascript = 'alert("Incorrect input.")';
+		session_destroy();
     }
 	return array(
 		'username' 	 => $username,

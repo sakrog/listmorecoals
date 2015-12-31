@@ -1,5 +1,4 @@
 <?php 
-
 require_once '../database/config.php';
 require_once "../database/dbconnect.php";
 require_once "../models/Input.php";
@@ -121,6 +120,8 @@ if (!empty($_POST)) {
 	}
 }
 
+
+
 ?>
 <!DOCTYPE html>
  
@@ -147,6 +148,7 @@ if (!empty($_POST)) {
 
 		<table class="table table-hover table-bordered table-striped">
 		<tr class='table-hover	'>
+			<th class="header">Photo</th>
 			<th class="header col-md-1">Date Posted</th>
 			<th class="header">Title</th>
 			<th class="header col-md-1">Price</th>
@@ -157,11 +159,12 @@ if (!empty($_POST)) {
 			<?php
 			foreach ($posts as $post):?>
 				<tr class='table table-hover table-bordered body'>
+					<td>Photo</td>
 					<td><?= $post['post_date'] ?></td>
 					<td><?= $post['title']?></td> 
 					<td><?= $post['price']?></td>
 					<td><?= $post['description']?></td>
-					<td><img src="<?= $post['image']?>" class="img-responsive"></td>
+					<td><img src="<?= $post['image']?>"></td>
 					
 			<?php endforeach ?>
 			</tr>
