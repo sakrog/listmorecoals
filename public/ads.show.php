@@ -19,6 +19,7 @@ class Post extends Model
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		$instance = null;
+
 		if($result)
 		{
 		$instance = new static;
@@ -28,6 +29,7 @@ class Post extends Model
 	}
 }
 $post = Post::findPostById(1);
+echo "asldjadf";
 
 ?>
 
