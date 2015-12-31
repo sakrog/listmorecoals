@@ -1,6 +1,7 @@
 <?php
+session_start();
 
-require_once '../utils/Input.php';
+require_once '../database/config.php';
 require_once '../models/BaseModel.php';
 
 class Post extends Model
@@ -18,6 +19,7 @@ class Post extends Model
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		$instance = null;
+
 		if($result)
 		{
 		$instance = new static;
@@ -27,6 +29,7 @@ class Post extends Model
 	}
 }
 $post = Post::findPostById(1);
+echo "asldjadf";
 
 ?>
 
@@ -49,9 +52,11 @@ $post = Post::findPostById(1);
 
 		<div class="container">
 			<h1><?= $post->title; ?><small>$<?= $post->price; ?></small>
+				<hr>
 				<br><h4><?= $post->description; ?></h4>
 		</div>	
 
+		<?= $_SESSION["username"]?>
 
 		<?php include "../views/partials/footer.php"; ?>
 		<!-- JQUERY -->
