@@ -1,8 +1,10 @@
 <?php
 require_once '../database/config.php';
+require_once "../database/dbconnect.php";
+require_once "../models/Input.php";
 
-if (!isset($_POST['search']))
-header("Location: ads.index.php");
+// if (!isset($_POST['search']))
+// header("Location: ads.index.php");
 
 // create the connection object
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -24,6 +26,7 @@ $search_rs = mysqli_fetch_assoc($result);
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- BOOTSTRAP CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<!-- CUSTOM CSS -->
@@ -34,6 +37,9 @@ $search_rs = mysqli_fetch_assoc($result);
 	<link rel="stylesheet" type="text/css" href="css/post_table.css">
 	<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
 	<?php include "../views/partials/navbar.php"; ?>
@@ -62,15 +68,14 @@ do { ?>
 	<td><img src="<?php echo $search_rs['image']; ?>" class="img-responsive"></td>
 </tr>
 <?php
-// Kindly note, how false and assignment is used here.
+// Note how false and assignment is used here.
 } while (false != ($search_rs = mysqli_fetch_array($result)));
-}
-else
-echo "No results found";?>
+} else echo "No results found";?>
+	</table>
 <?php include "../views/partials/post_modal.php"; ?>
 <?php include "../views/partials/footer.php"; ?>
 		<!-- JQUERY -->
-		<script src="/js/jquery-2.1.4.min.js"></script>
+		<script src="/js/jquery-2.1.4.min.js></script>
 		<!-- BOOTSTRAP JS -->
 		<script src="/js/bootstrap.min.js"></script>
 		<!-- CUSTOM JS -->

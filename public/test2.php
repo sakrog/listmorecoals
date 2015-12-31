@@ -5,7 +5,7 @@
 	</head>
 	<body>
 	<p>Search</p>
-	<form name="form1" method="post" action="searchresults.php">
+	<form name="form1" method="post" action="test.php">
 	<input name="search" type="text" size="40" maxlength="50">
 	<input type="submit" name="Submit" value="search">
 
