@@ -16,8 +16,8 @@ require_once '../database/config.php';
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<!-- CUSTOM CSS -->
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
-		<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-		<!-- TITLE IMG -->
+		<link href='https://fonts.googleapis.com/css?family=Germania+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>		<!-- TITLE IMG -->
 		<!-- <link rel="shortcut icon" href="img/mole.png"> -->
 		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
