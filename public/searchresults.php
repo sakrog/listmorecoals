@@ -22,7 +22,7 @@ $search_rs = mysqli_fetch_assoc($result);
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Search Results</title>
+	<title>Handel - Search Results</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@ $search_rs = mysqli_fetch_assoc($result);
 	<!-- BOOTSTRAP CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<!-- CUSTOM CSS -->
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<!-- TITLE IMG -->
 	<!-- <link rel="shortcut icon" href="img/mole.png"> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -47,13 +47,13 @@ $search_rs = mysqli_fetch_assoc($result);
 
 	<table class="table table-hover table-bordered table-striped">
 	<tr class='table-hover	'>
-		<th class="header col-md-1">Date Posted</th>
-		<th class="header">Title</th>
-		<th class="header col-md-1">Price</th>
-		<th class="header col-md-6">Description</th>
-		<th class="header">E-Mail</th>
-		<th class="header">Location</th>
-		<th class="header col-md-6">Image</th>
+		<th class="col-md-1">Date Posted</th>
+		<th>Title</th>
+		<th class="col-md-1">Price</th>
+		<th class="col-md-6">Description</th>
+		<th>E-Mail</th>
+		<th>Location</th>
+		<th class="col-md-6">Image</th>
 	</tr>
 <?php
 if (mysqli_num_rows($result) > 0) {

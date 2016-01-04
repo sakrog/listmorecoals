@@ -8,8 +8,16 @@ function checkValues()
 	return Input::setAndNotEmpty('title') && Input::setAndNotEmpty('description') && Input::setAndNotEmpty('location') && Input::setAndNotEmpty('email') && Input::setAndNotEmpty('price');
 }
 
+
 function insertPost($dbc)
 {
+	//Setting username (currently hard coded, will use SESSION variable later)
+	$username = "pascal456";
+	$user = USER::findUserByUsername($username);
+	var_dump($user);
+	$userid = $user->userid;
+
+
 	$errors = [];
 
 	try{
@@ -56,7 +64,7 @@ function insertPost($dbc)
 	$insert_table = "INSERT INTO posts (userid, post_date, title, price, description, email, location, image) VALUES (:userid, :post_date, :title, :price, :description, :email, :location, :image)";
 
     $stmt = $dbc->prepare($insert_table);
-    $stmt->bindValue(':userid', 1, PDO::PARAM_STR);
+    $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
     $stmt->bindValue(':post_date', $date, PDO::PARAM_STR);
     $stmt->bindValue(':title', $title, PDO::PARAM_STR);
     $stmt->bindValue(':price', $price, PDO::PARAM_STR);
@@ -146,25 +154,27 @@ if (!empty($_POST)) {
 		<?php include "../views/partials/navbar.php"; ?>
 		<?php include "../views/partials/header.php"; ?>
 
-		<table class="table table-hover table-bordered table-striped">
-		<tr class='table-hover	'>
-			<th class="header">Photo</th>
-			<th class="header col-md-1">Date Posted</th>
-			<th class="header">Title</th>
-			<th class="header col-md-1">Price</th>
-			<th class="header col-md-6">Description</th>
-			<th class="header col-md-6">Image</th>
+		<table class="table table-bordered table-striped">
+		<tr>
+			<th class="col-md-1">Date Posted</th>
+			<th>Title</th>
+			<th class="col-md-1">Price</th>
+			<th class="col-md-6">Description</th>
+			<th>E-mail</th>
+			<th>Location</th>
+			<th class="col-md-6">Image</th>
 		</tr>
 
 			<?php
 			foreach ($posts as $post):?>
 				<tr class='table table-hover table-bordered body'>
-					<td>Photo</td>
 					<td><?= $post['post_date'] ?></td>
 					<td><?= $post['title']?></td> 
 					<td><?= $post['price']?></td>
 					<td><?= $post['description']?></td>
-					<td><img src="<?= $post['image']?>"></td>
+					<td><?= $post['email']?></td>
+					<td><?= $post['location']?></td>
+					<td><img src="<?= $post['image']?>" class="img-responsive"></td>
 					
 			<?php endforeach ?>
 			</tr>
