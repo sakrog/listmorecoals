@@ -1,5 +1,5 @@
 <?php
-require_once '../database/config.php'
+require_once '../database/config.php';
 
 function pageController()
 {
@@ -15,7 +15,7 @@ function pageController()
     }else if ($username != "" || $password != ""){
 		$javascript = 'alert("Incorrect input.")';
 		session_destroy();
-    }
+    };
 	return array(
 		'username' 	 => $username,
 		'password' => $password,

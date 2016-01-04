@@ -11,7 +11,7 @@ class Auth
 		{
 			$_SESSION['LOGGED_IN_USER'] = $username;
 			return true;
-		}
+		};
 		return false;
 	}
 
