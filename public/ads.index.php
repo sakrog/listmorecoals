@@ -159,7 +159,6 @@ if (!empty($_POST)) {
 			<th>Title</th>
 			<th class="col-md-1">Price</th>
 			<th class="col-md-6">Description</th>
-			<th>E-mail</th>
 			<th>Location</th>
 			<th class="col-md-6">Image</th>
 		</tr>
@@ -171,6 +170,7 @@ if (!empty($_POST)) {
 					<td><?= $post['title']?></td> 
 					<td><?= $post['price']?></td>
 					<td><?= $post['description']?></td>
+					<td><?= $post['location']?></td>
 					<td><img src="<?= $post['image']?>" class="img-responsive"></td>
 					
 			<?php endforeach ?>
