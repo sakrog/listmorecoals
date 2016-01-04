@@ -15,6 +15,7 @@ $query = 'CREATE TABLE users (
 	state VARCHAR(2) NOT NULL,
 	password VARCHAR(240) NOT NULL,
 	username VARCHAR(100) NOT NULL,
+	image LONGBLOB NOT NULL,
 	PRIMARY KEY (userid)
 	)';
 $dbc->exec($query);

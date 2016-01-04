@@ -2,7 +2,6 @@
 require_once '../database/config.php';
 require_once "../database/dbconnect.php";
 require_once "../models/Input.php";
-
 function checkValues()
 {
 	return Input::setAndNotEmpty('title') && Input::setAndNotEmpty('description') && Input::setAndNotEmpty('location') && Input::setAndNotEmpty('email') && Input::setAndNotEmpty('price');
@@ -172,8 +171,6 @@ if (!empty($_POST)) {
 					<td><?= $post['title']?></td> 
 					<td><?= $post['price']?></td>
 					<td><?= $post['description']?></td>
-					<td><?= $post['email']?></td>
-					<td><?= $post['location']?></td>
 					<td><img src="<?= $post['image']?>" class="img-responsive"></td>
 					
 			<?php endforeach ?>
