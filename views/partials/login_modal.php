@@ -12,7 +12,7 @@
 			</div>
 			<!-- Modal Body -->
 			<div class="modal-body">
-				<form role="form" method="POST">
+				<form role="form" method="POST" action="login.php">
 					<div class="form-group">
 						<label for="username_login">Username</label><br>
 						<input type="text" name="username_login" placeholder="Enter username"><br>
@@ -24,7 +24,7 @@
 					<div class="checkbox">
 						<label><input type="checkbox"/>Remember Me</label>
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" id="submit" name="submit" class="btn btn-default">Submit</button>
 				</form>
 			</div>
 		</div>

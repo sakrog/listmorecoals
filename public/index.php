@@ -1,29 +1,29 @@
 <?php
-require_once '../database/config.php'
+require_once '../database/config.php';	
 
-function pageController()
+function logIn()
 {
-	session_start();
-	$sessionId = session_id();
-	$_SESSION['tempuser'] = Input::get('username_login');
-	$_SESSION['temppass'] = Input::get('password_login');
-	$username = $_SESSION['tempuser'];
-	$password = $_SESSION['temppass'];
-	$javascript = '';
-	if(Auth::attempt($username, $password)){
-        header('Location: ads.index.php');
-    }else if ($username != "" || $password != ""){
-		$javascript = 'alert("Incorrect input.")';
-		session_destroy();
-    }
-	return array(
-		'username' 	 => $username,
-		'password' => $password,
-		'javascript' => $javascript
-	);
-};
-extract(pageController());
+	try{
+		session_start();
+		$sessionId = session_id();
+		$_SESSION['tempuser'] = Input::get('username_login');
+		$_SESSION['temppass'] = Input::get('password_login');
+		$username = $_SESSION['tempuser'];
+		$password = $_SESSION['temppass'];
+		$javascript = '';
+		if(Auth::attempt($username, $password)){
+		    header('Location: ads.index.php');
+		}else if ($username != "" || $password != ""){
+			$javascript = 'alert("Incorrect input.")';
+			session_destroy();
+		}
+	} catch (Exception $e) {
+		echo 'Caught Exception: ', $e->getMessage(), "\n";
+	}
+}
+
 ?>
+
 
 <!DOCTYPE html>
 
