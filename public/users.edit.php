@@ -3,14 +3,14 @@ require_once '../database/config.php';
 require_once "../database/dbconnect.php";
 require_once "../models/Input.php";
 
-function checkValues()
+session_start();
+
+function checkUserValues()
 {
-	return Input::setAndNotEmpty('first_name') && Input::setAndNotEmpty('last_name') && Input::setAndNotEmpty('email') && Input::setAndNotEmpty('city') && Input::setAndNotEmpty('state') && Input::setAndNotEmpty('password') && Input::setAndNotEmpty('username');
+	return Input::setAndNotEmpty('first_name') && Input::setAndNotEmpty('last_name') && Input::setAndNotEmpty('email') && Input::setAndNotEmpty('city') && Input::setAndNotEmpty('state') && Input::setAndNotEmpty('password') && Input::setAndNotEmpty('username') && Input::setAndNotEmpty('image');
 }
 
-var_dump($_SESSION['LOGGED_IN_USER']);
-
-function insertPost($dbc)
+function insertUser($dbc)
 {
 	$errors = [];
 
@@ -49,8 +49,68 @@ function insertPost($dbc)
 	} catch (Exception $e) {
 		array_push($errors, $e->getMessage());
 	}
+	try{
+		$price = Input::getString('image');
+	} catch (Exception $e) {
+		array_push($errors, $e->getMessage());
+	}
 
-	if(Input::has('username')){
+	$date = date('Y-m-d');
+
+	$insert_user = "INSERT INTO users (userid, first_name, last_name, email, city, state, password, username, image) VALUES (:userid, :first_name, :last_name, :email, :city, :state, :password, :username, :image)";
+
+    $stmt = $dbc->prepare($insert_user);
+    $stmt->bindValue(':userid', 1, PDO::PARAM_STR);
+    $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
+    $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->bindValue(':city', $city, PDO::PARAM_STR);
+    $stmt->bindValue(':state', $state, PDO::PARAM_STR);
+    $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+    $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+    $stmt->bindValue(':image', $filename, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+	return $errors;
+}
+
+function checkValues()
+{
+	return Input::setAndNotEmpty('title') && Input::setAndNotEmpty('description') && Input::setAndNotEmpty('location') && Input::setAndNotEmpty('email') && Input::setAndNotEmpty('price');
+}
+
+function insertPost($dbc)
+{
+	$errors = [];
+
+	try{
+		$title = Input::getString('title');
+	} catch (Exception $e) {
+		array_push($errors, $e->getMessage());
+	}
+	try{
+		$description =Input::getString('description');
+	} catch (Exception $e) {
+		array_push($errors, $e->getMessage());
+	}
+	try{
+		$location = Input::getString('location');
+	} catch (Exception $e) {
+		array_push($errors, $e->getMessage());
+	}
+	try{
+		$email = Input::getString('email');
+	} catch (Exception $e) {
+		array_push($errors, $e->getMessage());
+	}
+	try{
+		$price = Input::getString('price');
+	} catch (Exception $e) {
+		array_push($errors, $e->getMessage());
+	}
+
+	if(Input::has('title')){
     	if($_FILES) {
     		// Create variable for the uploads direc for images in our server
     		$uploads_directory = 'img/uploads/';
@@ -65,31 +125,21 @@ function insertPost($dbc)
 
 	$date = date('Y-m-d');
 
-	$insert_table = "INSERT INTO users (userid, first_name, last_name, email, city, state, password, username) VALUES (:userid, :first_name, :last_name, :email, :city, :state, :password, :username)";
+	$insert_table = "INSERT INTO posts (userid, post_date, title, price, description, email, location, image) VALUES (:userid, :post_date, :title, :price, :description, :email, :location, :image)";
 
     $stmt = $dbc->prepare($insert_table);
     $stmt->bindValue(':userid', 1, PDO::PARAM_STR);
-    $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
-    $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+    $stmt->bindValue(':post_date', $date, PDO::PARAM_STR);
+    $stmt->bindValue(':title', $title, PDO::PARAM_STR);
+    $stmt->bindValue(':price', $price, PDO::PARAM_STR);
+    $stmt->bindValue(':description', $description, PDO::PARAM_STR);
     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-    $stmt->bindValue(':city', $city, PDO::PARAM_STR);
-    $stmt->bindValue(':state', $state, PDO::PARAM_STR);
-    $stmt->bindValue(':password', $password, PDO::PARAM_STR);
-    $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+    $stmt->bindValue(':location', $location, PDO::PARAM_STR);
+    $stmt->bindValue(':image', $filename, PDO::PARAM_STR);
 
     $stmt->execute();
 
 	return $errors;
-}
-
-function deletePost($dbc)
-{
-	if (Input::has('id')) {
-		$delete_column = "DELETE FROM posts WHERE id = :id";
-		$del = $dbc->prepare($delete_column);
-		$del->bindValue(':id', Input::get('id'), PDO::PARAM_STR);
-		$del->execute();
-	}
 }
 
 if (!empty($_POST)) {
@@ -102,7 +152,8 @@ if (!empty($_POST)) {
 	}
 }
 
-
+$loggedInUser = $_SESSION['tempuser'];
+$user = User::findUserByUsername($loggedInUser);
 
 ?>
 <!DOCTYPE html>
@@ -129,13 +180,14 @@ if (!empty($_POST)) {
 		<div class="container">
 			<div class="jumbotron">
 				<h1 class="title">Edit Your Profile</h1>
-				<div><?= $first_name ?></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
+				<div>First Name: <?= $user->first_name ?></div>
+				<div>Last Name: <?= $user->last_name ?></div>
+				<div>Email: <?= $user->email ?></div>
+				<div>City: <?= $user->city ?></div>
+				<div>State: <?= $user->state ?></div>
+				<div>Password: <?= $user->password ?></div>
+				<div>Username: <?= $user->username ?></div>
+				<div><img src="/img/uploads/<?= $user->image ?>" class="img-responsive"></div>
 			</div>
 		</div>
 		<form role="form" method="POST" enctype="multipart/form-data">
@@ -166,6 +218,10 @@ if (!empty($_POST)) {
 			<div class="form-group col-md-4">
 				<label for="username">username</label>
 				<input type="text" class="form-control" name="username">
+			</div>
+			<div class="form-group">
+				<label for="image"></label>
+				<input type="file" name="image" id="image">
 			</div>
 			<div class="modal-footer">
 				<button type="submit" class="btn btn-primary btn-lg">Submit</button>

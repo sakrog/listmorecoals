@@ -2,7 +2,6 @@
 require_once '../database/config.php';
 require_once "../database/dbconnect.php";
 require_once "../models/Input.php";
-
 function checkValues()
 {
 	return Input::setAndNotEmpty('title') && Input::setAndNotEmpty('description') && Input::setAndNotEmpty('location') && Input::setAndNotEmpty('email') && Input::setAndNotEmpty('price');

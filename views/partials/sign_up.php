@@ -15,7 +15,7 @@ function pageController2($dbc)
 
 		if(!isset($noemail) && Input::setAndNotEmpty('first_name')) {
 			
-			$query = "INSERT INTO users (first_name, last_name, email, city, state, password, username) VALUES (:first_name, :last_name, :email, :city, :state, :password, :username)";
+			$query = "INSERT INTO users (first_name, last_name, email, city, state, password, username, image) VALUES (:first_name, :last_name, :email, :city, :state, :password, :username, :image)";
 
 			$stmt2 = $dbc->prepare($query);
 			$stmt2->bindValue(':first_name', Input::get('first_name'), PDO::PARAM_STR);
@@ -25,6 +25,8 @@ function pageController2($dbc)
 			$stmt2->bindValue(':state', Input::get('state'), PDO::PARAM_STR);
 			$stmt2->bindValue(':password', password_hash(Input::get('pwd'), PASSWORD_BCRYPT), PDO::PARAM_STR);
 			$stmt2->bindValue(':username', Input::get('username'), PDO::PARAM_STR);
+		    $stmt2->bindValue(':image', Input::get('image'), PDO::PARAM_STR);
+
 			$stmt2->execute();
 		}
 	}
@@ -63,6 +65,10 @@ pageController2($dbc);
 	<div class="form-group">
 		<label for="pwd">Password:</label>
 		<input type="password" class="form-control" name="pwd" id="password">
+	</div>
+	<div class="form-group">
+		<label for="image">Profile Image:</label>
+		<input type="file" name="image" id="image">
 	</div>
 	<div class="form-group">
 		<label for="agree">Please agree to not be a troll</label>
