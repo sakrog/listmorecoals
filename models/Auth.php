@@ -6,7 +6,7 @@ class Auth
 	public static function attempt($username, $password)
 	{
 		$user = User::findUserByUsername($username);
-
+		
 		if(password_verify($password, $user->password))
 		{
 			$_SESSION['LOGGED_IN_USER'] = $username;
