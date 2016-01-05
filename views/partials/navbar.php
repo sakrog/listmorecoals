@@ -4,6 +4,7 @@
 		<div class="container"></div>
 <!-- Collect the nav links, forms, and other content for toggling -->
 		<ul class="nav navbar-nav navbar-right">
+			<li><a class="btn btn-lg" href="users.edit.php">My Profile</a></li>
 			<li><a class="btn btn-lg" data-toggle="modal" data-target="#post_modal">Post</a></li>
 			<li><a class="btn btn-lg" href="logout.php">Sign Out</a></li>
 		</ul>
