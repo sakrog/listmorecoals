@@ -1,6 +1,6 @@
 <?php
 
-	require_once '../views/bootstrap.php';
+	require_once '../bootstrap.php';
 
 	// if (!isset($_POST['search']))
 	// header("Location: ads.index.php");
