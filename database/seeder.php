@@ -1,6 +1,5 @@
 <?php
-require_once 'config.php';
-require_once 'dbconnect.php';
+require_once '../views/bootstrap.php';
 
 $dbc->exec('TRUNCATE users;');
 
@@ -13,7 +12,7 @@ $users = [
 	['first_name' => 'Haniyah', 'last_name' => 'Shaikh', 'email' => 'Hanu@gmail.com', 'city' => 'Boerne', 'state' => 'TX', 'password' => 'hanu123', 'username' => 'hshaikh210']
 ];
 
-$query = 'INSERT INTO users(first_name, last_name, email, city, state, password, username) VALUES(:first_name, :last_name, :email, :city, :state, :password, :username)';
+$query = 'INSERT INTO users(first_name, last_name, email, city, state, password, username, image) VALUES(:first_name, :last_name, :email, :city, :state, :password, :username, :image)';
 $stmt = $dbc->prepare($query);
 foreach ($users as $user) {
     $stmt->bindValue(':first_name', $user['first_name'], PDO::PARAM_STR);
@@ -23,6 +22,7 @@ foreach ($users as $user) {
     $stmt->bindValue(':state', $user['state'], PDO::PARAM_STR);
     $stmt->bindValue(':password', password_hash($user['password'], PASSWORD_DEFAULT), PDO::PARAM_STR);
     $stmt->bindValue(':username', $user['username'], PDO::PARAM_STR);
+    $stmt->bindValue(':username', $user['image'], PDO::PARAM_STR);
     $stmt->execute();
 }
 

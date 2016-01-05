@@ -1,5 +1,3 @@
 <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-
-            </ul>
-        </div>
+	<ul class="sidebar-nav"></ul>
+</div>

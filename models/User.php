@@ -1,7 +1,5 @@
 <?php 
-require_once "Input.php";
 require_once "BaseModel.php";
-require_once "Auth.php";
 
 class User extends Model
 {

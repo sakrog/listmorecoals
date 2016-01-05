@@ -1,7 +1,6 @@
 <?php
 
-require_once '../database/config.php';	
-
+require_once '../views/bootstrap.php';	
 
 session_start();
 $sessionId = session_id();
@@ -16,5 +15,3 @@ header('Location: ads.index.php');
 	$javascript = 'alert("Incorrect input.")';
 	session_destroy();
 }
-
-?>

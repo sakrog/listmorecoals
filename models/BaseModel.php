@@ -1,5 +1,7 @@
 <?php
 
+require_once '../bootstrap.php';
+
 class Model
 {
     protected static $dbc;

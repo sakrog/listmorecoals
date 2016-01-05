@@ -1,38 +1,39 @@
 <?php
-require_once "../database/config.php";
 
-function pageController2($dbc)
-{
+	require_once "../bootstrap.php";
 
-	if(!empty($_POST)){
-		try{
-			User::ifUserExists(Input::get('email'));
-		} catch (Exception $e){
-			
-			echo "Please use a different email";
-			$noemail = true;
-		}
+	function pageController2($dbc)
+	{
 
-		if(!isset($noemail) && Input::setAndNotEmpty('first_name')) {
-			
-			$query = "INSERT INTO users (first_name, last_name, email, city, state, password, username, image) VALUES (:first_name, :last_name, :email, :city, :state, :password, :username, :image)";
+		if(!empty($_POST)){
+			try{
+				User::ifUserExists(Input::get('email'));
+			} catch (Exception $e){
+				
+				echo "Please use a different email";
+				$noemail = true;
+			}
 
-			$stmt2 = $dbc->prepare($query);
-			$stmt2->bindValue(':first_name', Input::get('first_name'), PDO::PARAM_STR);
-			$stmt2->bindValue(':last_name', Input::get('last_name'), PDO::PARAM_STR);			
-			$stmt2->bindValue(':email', Input::get('email'), PDO::PARAM_STR);
-			$stmt2->bindValue(':city', Input::get('city'), PDO::PARAM_STR);
-			$stmt2->bindValue(':state', Input::get('state'), PDO::PARAM_STR);
-			$stmt2->bindValue(':password', password_hash(Input::get('pwd'), PASSWORD_BCRYPT), PDO::PARAM_STR);
-			$stmt2->bindValue(':username', Input::get('username'), PDO::PARAM_STR);
-		    $stmt2->bindValue(':image', Input::get('image'), PDO::PARAM_STR);
+			if(!isset($noemail) && Input::setAndNotEmpty('first_name')) {
+				
+				$query = "INSERT INTO users (first_name, last_name, email, city, state, password, username, image) VALUES (:first_name, :last_name, :email, :city, :state, :password, :username, :image)";
 
-			$stmt2->execute();
+				$stmt2 = $dbc->prepare($query);
+				$stmt2->bindValue(':first_name', Input::get('first_name'), PDO::PARAM_STR);
+				$stmt2->bindValue(':last_name', Input::get('last_name'), PDO::PARAM_STR);			
+				$stmt2->bindValue(':email', Input::get('email'), PDO::PARAM_STR);
+				$stmt2->bindValue(':city', Input::get('city'), PDO::PARAM_STR);
+				$stmt2->bindValue(':state', Input::get('state'), PDO::PARAM_STR);
+				$stmt2->bindValue(':password', password_hash(Input::get('pwd'), PASSWORD_BCRYPT), PDO::PARAM_STR);
+				$stmt2->bindValue(':username', Input::get('username'), PDO::PARAM_STR);
+			    $stmt2->bindValue(':image', Input::get('image'), PDO::PARAM_STR);
+
+				$stmt2->execute();
+			}
 		}
 	}
-}
 
-pageController2($dbc);
+	pageController2($dbc);
 
 ?>
 
