@@ -2,11 +2,15 @@
 
 	require_once '../bootstrap.php';
 
+	session_start();
+	if(empty($_SESSION['LOGGED_IN_USER'])){
+		header('Location: index.php');
+	}
+	
 	function checkValues()
 	{
 		return Input::setAndNotEmpty('title') && Input::setAndNotEmpty('description') && Input::setAndNotEmpty('location') && Input::setAndNotEmpty('email') && Input::setAndNotEmpty('price');
 	}
-
 
 	function insertPost($dbc)
 	{

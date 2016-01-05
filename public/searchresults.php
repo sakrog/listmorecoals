@@ -2,6 +2,12 @@
 
 	require_once '../views/bootstrap.php';
 
+	session_start();
+	
+	if(empty($_SESSION['LOGGED_IN_USER'])){
+		header('Location: index.php');
+	}
+
 	// if (!isset($_POST['search']))
 	// header("Location: ads.index.php");
 

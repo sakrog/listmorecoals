@@ -1,8 +1,12 @@
 <?php
 
-	require_once '../views/bootstrap.php';
+	require_once '../bootstrap.php';
 
 	session_start();
+
+	if(empty($_SESSION['LOGGED_IN_USER'])){
+		header('Location: index.php');
+	}
 
 	function checkUserValues()
 	{

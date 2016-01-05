@@ -5,7 +5,7 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 		<ul class="nav navbar-nav navbar-right">
 			<li><a class="btn btn-lg" data-toggle="modal" data-target="#post_modal">Post</a></li>
-			<li><a class="btn btn-lg" href="index.php">Sign Out</a></li>
+			<li><a class="btn btn-lg" href="logout.php">Sign Out</a></li>
 		</ul>
     	<form class="form-inline" role="search" name="form1" method="post" action="searchresults.php">
             <div class="form-group">
