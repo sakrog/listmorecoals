@@ -13,14 +13,10 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- BOOTSTRAP CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<!-- CUSTOM CSS -->
 		<link rel="stylesheet" type="text/css" href="/css/main.css">
-		<link href='https://fonts.googleapis.com/css?family=Germania+One' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>		<!-- TITLE IMG -->
+		<!-- TAB ICON -->
 		<!-- <link rel="shortcut icon" href="img/mole.png"> -->
-		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-
 	</head>
 	<body>
 		<?php include "../views/partials/entry_navbar.php"; ?>
@@ -34,6 +30,5 @@
 		<script src="/js/bootstrap.min.js"></script>
 		<!-- CUSTOM JS -->
 		<script src="js/main.js"></script>
-		<script src="js/signup_form.js"></script>
 	</body>
 </html>
