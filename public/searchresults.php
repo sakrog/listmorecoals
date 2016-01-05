@@ -1,6 +1,6 @@
 <?php
 
-	require_once '../views/bootstrap.php';
+	require_once '../bootstrap.php';
 
 	session_start();
 	
