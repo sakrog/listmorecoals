@@ -1,6 +1,6 @@
 <?php
 
-	require_once '../views/bootstrap.php';
+	require_once '../bootstrap.php';
 
 	session_start();
 
@@ -191,35 +191,35 @@
 		</div>
 		<form role="form" method="POST" enctype="multipart/form-data">
 			<div class="form-group col-md-4">
-				<label for="first_name">first_name</label>
+				<label for="first_name">First Name</label>
 				<input type="text" class="form-control" name="first_name">
 			</div> 
 			<div class="form-group col-md-4">
-				<label for="last_name">last_name</label>
+				<label for="last_name">Last Name</label>
 				<input type="text" class="form-control" name="last_name">
 			</div>  
 			<div class="form-group col-md-4">
-				<label for="email">email</label>
+				<label for="email">E-Mail</label>
 				<input type="email" class="form-control" name="email">
 			</div>
 			<div class="form-group col-md-4">
-				<label for="city">city</label>
+				<label for="city">City</label>
 				<input type="text" class="form-control" name="city">
 			</div>
 			<div class="form-group col-md-4">
-				<label for="state">state</label>
+				<label for="state">State</label>
 				<input type="text" class="form-control" name="state">
 			</div> 
 			<div class="form-group col-md-4">
-				<label for="password">password</label>
+				<label for="password">Password</label>
 				<input type="password" class="form-control" name="password">
 			</div>
 			<div class="form-group col-md-4">
-				<label for="username">username</label>
+				<label for="username">Username</label>
 				<input type="text" class="form-control" name="username">
 			</div>
 			<div class="form-group">
-				<label for="image"></label>
+				<label for="image">Profile Picture</label>
 				<input type="file" name="image" id="image">
 			</div>
 			<div class="modal-footer">
