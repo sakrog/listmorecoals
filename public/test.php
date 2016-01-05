@@ -1,18 +1,19 @@
 <?php
-require_once '../database/config.php';
 
-	
-// create the connection object
-$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-// Don't forget to sanitize your user queries.
-// Here $conn is the connection object I assume. Replace it with yours.
-$_POST['search'] = mysqli_real_escape_string($conn, $_POST['search']);
-$search_sql = "SELECT * FROM `posts` WHERE `title` LIKE '%" . $_POST['search'] . "%' OR `description` LIKE '%".$_POST['search']."%'";
-// change the result here.
-$result = mysqli_query($conn, $search_sql);
-if(mysqli_num_rows($result) > 0) {    
-$search_rs = mysqli_fetch_assoc($result);
-}
+	require_once '../views/bootstrap.php';
+
+		
+	// create the connection object
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	// Don't forget to sanitize your user queries.
+	// Here $conn is the connection object I assume. Replace it with yours.
+	$_POST['search'] = mysqli_real_escape_string($conn, $_POST['search']);
+	$search_sql = "SELECT * FROM `posts` WHERE `title` LIKE '%" . $_POST['search'] . "%' OR `description` LIKE '%".$_POST['search']."%'";
+	// change the result here.
+	$result = mysqli_query($conn, $search_sql);
+	if(mysqli_num_rows($result) > 0) {    
+	$search_rs = mysqli_fetch_assoc($result);
+	}
 
 ?>
 <!DOCTYPE html>

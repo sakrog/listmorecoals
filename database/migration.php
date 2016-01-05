@@ -1,6 +1,5 @@
 <?php
-require_once 'config.php';
-require_once 'dbconnect.php';
+require_once '../views/bootstrap.php';
 
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
 
@@ -15,7 +14,7 @@ $query = 'CREATE TABLE users (
 	state VARCHAR(2) NOT NULL,
 	password VARCHAR(240) NOT NULL,
 	username VARCHAR(100) NOT NULL,
-	image LONGBLOB NOT NULL,
+	image VARCHAR(240) NOT NULL,
 	PRIMARY KEY (userid)
 	)';
 $dbc->exec($query);
@@ -31,9 +30,7 @@ $query = 'CREATE TABLE posts (
 	description VARCHAR(240) NOT NULL,
 	email VARCHAR(240) NOT NULL,
 	location VARCHAR(240) NOT NULL,
-	image LONGBLOB NOT NULL,
+	image VARCHAR(240) NOT NULL,
 	PRIMARY KEY (id)
 	)';
 $dbc->exec($query);
-
-?>

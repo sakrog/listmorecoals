@@ -1,7 +1,6 @@
 <?php
-require_once '../utils/dbconnect.php';
-require_once '../utils/Input.php';
-require_once '../utils/insert_id.php';
+
+require_once '../views/bootstrap.php';
 
 $page = Input::has('page') ? Input::get('page') : 1;
 $errors = [];
@@ -36,5 +35,3 @@ $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 
 $posts = $stmt->fetchALL(PDO::FETCH_ASSOC);
-
-?>

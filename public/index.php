@@ -1,5 +1,5 @@
 <?php
-require_once '../database/config.php';
+	require_once '../database/config.php';
 ?>
 
 
@@ -15,7 +15,7 @@ require_once '../database/config.php';
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<!-- CUSTOM CSS -->
-		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="/css/main.css">
 		<link href='https://fonts.googleapis.com/css?family=Germania+One' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>		<!-- TITLE IMG -->
 		<!-- <link rel="shortcut icon" href="img/mole.png"> -->

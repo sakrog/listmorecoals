@@ -1,35 +1,36 @@
 <?php
-session_start();
 
-require_once '../database/config.php';
-require_once '../models/BaseModel.php';
+	session_start();
 
-class Post extends Model
-{
-	protected static $table = 'posts';
+	require_once '../views/bootstrap.php';
+	require_once '../models/BaseModel.php';
 
-	public static function findPostById($id)
+	class Post extends Model
 	{
-		self::dbConnect();
-		$table=static::$table;
-		$query = "SELECT * FROM $table WHERE id=:id";
-		$stmt = self::$dbc->prepare($query);
-		$stmt->bindValue(':id', $id, PDO::PARAM_STR);
-		$stmt->execute();
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		protected static $table = 'posts';
 
-		$instance = null;
-
-		if($result)
+		public static function findPostById($id)
 		{
-		$instance = new static;
-		$instance->attributes = $result;
+			self::dbConnect();
+			$table=static::$table;
+			$query = "SELECT * FROM $table WHERE id=:id";
+			$stmt = self::$dbc->prepare($query);
+			$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+			$stmt->execute();
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			$instance = null;
+
+			if($result)
+			{
+			$instance = new static;
+			$instance->attributes = $result;
+			}
+			return $instance;
 		}
-		return $instance;
 	}
-}
-$post = Post::findPostById(1);
-echo "asldjadf";
+	$post = Post::findPostById(1);
+	echo "asldjadf";
 
 ?>
 
