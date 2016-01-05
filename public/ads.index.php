@@ -144,29 +144,23 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<!-- CUSTOM CSS -->
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
-		<!-- TITLE IMG -->
+		<!-- TAB ICON -->
 		<!-- <link rel="shortcut icon" href="img/mole.png"> -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="css/post_table.css">
-		<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		<?php include "../views/partials/navbar.php"; ?>
 		<?php include "../views/partials/header.php"; ?>
 
 		<table class="table table-bordered table-striped">
-		<tr>
-			<th class="col-md-1">Date Posted</th>
-			<th>Title</th>
-			<th class="col-md-1">Price</th>
-			<th class="col-md-6">Description</th>
-			<th>Location</th>
-			<th class="col-md-6">Image</th>
-		</tr>
-
-			<?php
-			foreach ($posts as $post):?>
+			<tr>
+				<th class="col-md-1">Date Posted</th>
+				<th>Title</th>
+				<th class="col-md-1">Price</th>
+				<th class="col-md-6">Description</th>
+				<th>Location</th>
+				<th class="col-md-6">Image</th>
+			</tr>
+			<?php foreach ($posts as $post): ?>
 				<tr class='table table-hover table-bordered body'>
 					<td><?= $post['post_date'] ?></td>
 					<td><?= $post['title']?></td> 
@@ -174,12 +168,9 @@
 					<td><?= $post['description']?></td>
 					<td><?= $post['location']?></td>
 					<td><img src="<?= $post['image']?>" class="img-responsive"></td>
-					
+				</tr>
 			<?php endforeach ?>
-			</tr>
-<!-- 	<div class="col-md-2"></div>
- -->	</table>
-<!-- 	</div -->		
+		</table>		
 		<?= "You are on page $page" ?>
  		<?php if ($page < 1) : ?>
 
